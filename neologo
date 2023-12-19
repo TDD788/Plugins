@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function update_logo() {
+  sed -i "s/neofetch --ascii_distro.*/neofetch --ascii_distro $1/" "$HOME/.autostart"
+}
+
+if [[ $1 == "--change" ]]; then
+  clear
+  echo "Let's Change Distribution Logo"
+  read -p "Please Write Your Favorite Logo Distribution Here: " new_distribution
+  update_logo "$new_distribution"
+  echo "All Right! The Logo Is Changed."
+  echo "          "
+  neofetch --ascii_distro "$(awk '/neofetch --ascii_distro/ {print $NF}' "$HOME/.autostart")"
+elif [[ $1 == "--dist-list" ]]; then
+  clear
+  echo "Available distributions: (AIX Alpine Anarchy Android Antergos antiX \"AOSC OS\" Apricity ArcoLinux ArchBox ARCHlabs ArchStrike XFerience ArchMerge Arch Artix Arya Bedrock BunsenLabs Calculate Carbs CentOS Chakra ChaletOS Chapeau Chrom Cleanjaro ClearOS Clear_Linux Clover Condres Container_Linux CRUX Cucumber Debian Deepin DesaOS Devuan DracOS DarkOs DragonFly Drauger Elementary EndeavourOS Endless EuroLinux Exherbo Fedora Feren FreeBSD FreeMiNT Frugalware Funtoo GalliumOS Garuda Gentoo Pentoo gNewSense GNOME GNU GoboLinux Grombyang Guix Haiku Huayra Hyperbola janus Kali KaOS KDE_neon Kibojoe Kogaion Korora KSLinux Kubuntu LEDE LFS Linux_Lite LMDE Lubuntu Lunar macos Mageia MagpieOS Mandriva Manjaro Maui Mer Minix LinuxMint MX_Linux Namib Neptune NetBSD Netrunner Nitrux NixOS Nurunner NuTyX OBRevenge OpenBSD openEuler OpenIndiana openmamba OpenMandriva OpenStage OpenWrt osmc Oracle OS Elbrus PacBSD Parabola Pardus Parrot Parsix TrueOS PCLinuxOS Peppermint popos Porteus PostMarketOS Proxmox Puppy PureOS Qubes Radix Raspbian Reborn_OS Redstar Redcore Redhat Refracted_Devuan Regata Rosa sabotage Sabayon Sailfish SalentOS Scientific Septor SereneLinux SharkLinux Siduction Slackware SliTaz SmartOS Solus Source_Mage Sparky Star SteamOS SunOS openSUSE_Leap openSUSE_Tumbleweed openSUSE SwagArch Tails Trisquel Ubuntu-Budgie Ubuntu-GNOME Ubuntu-MATE Ubuntu-Studio Ubuntu Venom Void Obarun windows10 Windows7 Xubuntu Zorin IRIX. )" 
+  echo "          "
+  echo "          "
+  echo "Old Logos: Arch_old Ubuntu_old Redhat_old Dragonfly_old"
+  echo "          "
+  echo "          "
+  echo "UbuntuFlavor: Lubuntu Kubuntu Xubuntu Ubuntu-GNOME Ubuntu-Studio Ubuntu-Mate Ubuntu-Budgie."
+  echo "          "
+  echo "          "
+  echo "Small Logos: Arcolinux_small Dragonfly_small Fedora_small Alpine_small Arch_small Ubuntu_small CRUX_small Debian_small Gentoo_small FreeBSD_small Mac_small NixOS_small OpenBSD_small android_small Artix_small CentOS_small Cleanjaro_small Elementary_small GUIX_small Hyperbola_small Manjaro_small MX_small NetBSD_small Parabola_small POP_OS_small PureOS_small Slackware_small SunOS_small LinuxLite_small OpenSUSE_small Raspbian_small postmarketOS_small Void_small  "
+elif [[ $1 == "--help" ]]; then
+  echo "Usage:"
+  echo "neologo --change: Change Distribution Logo"
+  echo "neologo --dist-list: List Available Distributions"
+  echo "neologo --help: Display This Help Message"
+else
+  neofetch --ascii_distro "$(awk '/neofetch --ascii_distro/ {print $NF}' "$HOME/.autostart")"
+fi
